@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocuChat AI</title>
+<meta name="description" content="Chatbot dukungan pelanggan yang hanya menjawab dari dokumen perusahaan, dengan sitasi halaman. Open source, demo berjalan di browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="bar"><h1>DocuChat</h1><p>Jawaban hanya dari dokumen yang diunggah. Setiap jawaban menyebut halaman sumbernya.</p>
+<nav><a href="https://github.com/Arilsaputra854/docuchat-ai">Kode sumber</a><a href="https://github.com/Arilsaputra854/docuchat-ai#arsitektur">Arsitektur</a></nav></header>
+<div class="shell">
+<aside class="col" aria-label="Dokumen">
+<h2>Dokumen</h2>
+<div id="docs"><p class="empty">Belum ada dokumen. Pilih contoh di bawah atau unggah berkas TXT atau PDF.</p></div>
+<p><button id="sample" type="button">Muat contoh SOP toko</button></p>
+<label for="file" class="note">Atau unggah berkas (TXT, PDF)</label>
+<input type="file" id="file" accept=".txt,.pdf">
+<p class="note">Demo ini berjalan di browser Anda. Berkas tidak dikirim ke server mana pun.</p>
+</aside>
+<main class="col">
+<div class="tabs" role="tablist"><button role="tab" id="t-chat" aria-selected="true" aria-controls="p-chat">Percakapan</button><button role="tab" id="t-embed" aria-selected="false" aria-controls="p-embed">Pasang di website</button><button role="tab" id="t-log" aria-selected="false" aria-controls="p-log">Riwayat pertanyaan</button></div>
+<section id="p-chat" role="tabpanel" aria-labelledby="t-chat">
+<div id="status" role="status"></div>
+<div class="thread" id="thread" aria-live="polite"><p class="empty">Muat dokumen terlebih dahulu, lalu ajukan pertanyaan.</p></div>
+<form class="ask" id="f"><label for="q" class="note" style="position:absolute;left:-9999px">Pertanyaan</label><input type="text" id="q" placeholder="Contoh: berapa lama garansi produk?" autocomplete="off"><button id="send">Kirim</button></form>
+</section>
+<section id="p-embed" role="tabpanel" aria-labelledby="t-embed" hidden>
+<p class="note">Tempel potongan ini sebelum penutup &lt;/body&gt; pada website Anda. Widget membuka chat dalam iframe.</p>
+<pre id="embed"></pre><button id="copy" type="button" class="quiet">Salin kode</button>
+</section>
+<section id="p-log" role="tabpanel" aria-labelledby="t-log" hidden>
+<div id="logbox"><p class="empty">Belum ada pertanyaan.</p></div>
+</section>
+</main>
+<aside class="col" aria-label="Sumber"><h2>Sumber jawaban</h2><div id="sources"><p class="empty">Kutipan dari dokumen muncul di sini setelah ada jawaban.</p></div></aside>
+</div>
+<script type="module" src="app.js"></script></body></html>
